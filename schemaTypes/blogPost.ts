@@ -210,13 +210,6 @@ export default defineType({
       type: 'image',
       group: 'settings',
     }),
-    defineField({
-      name: 'relatedEquipment',
-      title: 'Related Equipment',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'equipment' }] }],
-      group: 'meta',
-    }),
   ],
   preview: {
     select: {
