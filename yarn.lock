@@ -1873,7 +1873,7 @@
     "@sanity/client" "^6.15.11"
     "@types/react" "^18.0.25"
 
-"@sanity/types@3.65.0":
+"@sanity/types@3.65.0", "@sanity/types@^3.65.0":
   version "3.65.0"
   resolved "https://registry.yarnpkg.com/@sanity/types/-/types-3.65.0.tgz#8ef07ad693be1be8dcb21565abfba0e8ce12870e"
   integrity sha512-UHpxt//qXWeNSauOFRzZbtSZ9wRGJ92L/DKzFZBEvAdqZkotKmgl7qgbmXwwOw4Gjm1bmf5H/14cKoB+Af0mZw==
