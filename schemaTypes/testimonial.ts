@@ -62,8 +62,12 @@ export default defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
-      description: 'Name of the person or company providing the testimonial',
       validation: Rule => Rule.required().error('Name is required'),
+    }),
+    defineField({
+      name: 'company',
+      title: 'Company',
+      type: 'string',
     }),
     defineField({
       name: 'state',
