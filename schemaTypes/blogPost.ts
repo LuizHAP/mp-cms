@@ -216,6 +216,19 @@ export default defineType({
       type: 'image',
       group: 'settings',
     }),
+    defineField({
+      name: 'relatedModels',
+      title: 'Related Models',
+      type: 'array',
+      of: [
+        {
+          name: 'modelSlug',
+          title: 'Model Slug',
+          type: 'string',
+        },
+      ],
+      group: 'settings',
+    }),
   ],
   preview: {
     select: {
