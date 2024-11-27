@@ -164,7 +164,7 @@ export default defineType({
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: [{ type: 'author' }],
+      to: [{ type: 'teamMember' }],
       validation: (Rule) => Rule.required(),
       description: 'Select the author of this post.',
       group: 'meta',

@@ -20,10 +20,10 @@ export default defineType({
       validation: Rule => Rule.required().error('Job title is required.'),
     }),
     defineField({
-      name: 'department',
-      title: 'Department',
-      type: 'string',
-      description: 'Department or division where the team member works',
+      name: 'bio',
+      title: 'Bio',
+      type: 'text',
+      description: 'Short description about the team member',
     }),
     defineField({
       name: 'linkedin',
