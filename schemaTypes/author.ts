@@ -41,14 +41,6 @@ export default defineType({
       group: 'content',
     }),
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      description: 'The job title of the author as it will appear on their posts and profile.',
-      validation: (Rule) => Rule.required().error('Name is required'),
-      group: 'content',
-    }),
-    defineField({
       name: 'bio',
       title: 'Bio',
       type: 'text',
@@ -61,7 +53,6 @@ export default defineType({
       title: 'Avatar',
       type: 'image',
       description: 'The author\'s profile picture. This will be used on their profile page and next to their posts. Recommended size: 400x400px, square ratio.',
-      validation: (Rule) => Rule.required().error('Avatar is required'),
       options: {
         hotspot: true,
       },
