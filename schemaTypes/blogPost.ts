@@ -102,6 +102,9 @@ export default defineType({
             withFilename: true,
           },
         },
+        {
+          type: 'youTube',
+        },
       ],
       group: 'content',
     }),
