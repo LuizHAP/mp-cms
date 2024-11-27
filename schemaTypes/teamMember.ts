@@ -40,6 +40,13 @@ export default defineType({
       options: {
         hotspot: true
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        }
+      ],
       validation: Rule => Rule.custom((field: any) => {
         if (!field) return true // Allow empty field
         if (!field.asset || !field.asset.metadata || !field.asset.metadata.dimensions) {
@@ -52,5 +59,23 @@ export default defineType({
         return true
       })
     })
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'jobTitle',
+      media: 'avatar'
+    },
+    prepare(selection) {
+      const {title, media, subtitle} = selection
+      if (media && media.asset) {
+        media.alt = `Portrait of ${title}`
+      }
+      return {
+        title,
+        subtitle,
+        media
+      }
+    }
+  }
 })

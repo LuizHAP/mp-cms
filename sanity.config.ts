@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {codeInput} from '@sanity/code-input'
 import {colorInput} from '@sanity/color-input'
 import {schemaTypes} from './schemaTypes'
-import {BookIcon, DocumentsIcon, TagIcon, UserIcon, UsersIcon} from '@sanity/icons'
+import {BookIcon, DocumentsIcon, StarIcon, TagIcon, UserIcon, UsersIcon} from '@sanity/icons'
 
 export default defineConfig({
   name: 'default',
@@ -54,6 +54,14 @@ export default defineConfig({
               .child(
                 S.documentTypeList('teamMember')
                   .title('Team Members')
+              ),
+            // Ratings
+            S.listItem()
+              .title('Testimonials')
+              .icon(StarIcon)
+              .child(
+                S.documentTypeList('testimonial')
+                  .title('Testimonials')
               ),
           ])
 
