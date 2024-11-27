@@ -30,7 +30,6 @@ export default defineType({
       title: 'LinkedIn',
       type: 'string',
       description: 'LinkedIn profile URL of the team member',
-      validation: Rule => Rule.required().error('LinkedIn URL is required.'),
     }),
     defineField({
       name: 'avatar',
