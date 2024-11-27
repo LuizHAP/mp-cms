@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {codeInput} from '@sanity/code-input'
 import {colorInput} from '@sanity/color-input'
 import {schemaTypes} from './schemaTypes'
-import {BookIcon, DocumentsIcon, TagIcon, UserIcon, BulbOutlineIcon, ComponentIcon} from '@sanity/icons'
+import {BookIcon, DocumentsIcon, TagIcon, UserIcon } from '@sanity/icons'
 
 export default defineConfig({
   name: 'default',
@@ -38,6 +38,12 @@ export default defineConfig({
                       .icon(TagIcon)
                       .child(
                         S.documentTypeList('blogCategory')
+                      ),
+                    S.listItem()
+                      .title('Authors')
+                      .icon(UserIcon)
+                      .child(
+                        S.documentTypeList('author')
                       ),
                   ])
               ),

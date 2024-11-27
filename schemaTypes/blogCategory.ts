@@ -10,8 +10,8 @@ export default defineType({
       title: 'Content',
     },
     {
-      name: 'settings',
-      title: 'Settings',
+      name: 'meta',
+      title: 'Meta',
     },
     {
       name: 'seo',
@@ -57,13 +57,13 @@ export default defineType({
           title: 'Alternative Text',
         },
       ],
-      group: 'settings',
+      group: 'meta',
     }),
     defineField({
       name: 'color',
       title: 'Category Color',
       type: 'color',
-      group: 'settings',
+      group: 'meta',
     }),
     defineField({
       name: 'metaTitle',
