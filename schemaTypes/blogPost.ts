@@ -105,6 +105,9 @@ export default defineType({
         {
           type: 'youTube',
         },
+        {
+          type: 'banner',
+        },
       ],
       group: 'content',
     }),
