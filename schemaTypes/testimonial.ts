@@ -68,6 +68,7 @@ export default defineType({
       name: 'company',
       title: 'Company',
       type: 'string',
+      validation: Rule => Rule.required().error('Name is required'),
     }),
     defineField({
       name: 'state',
@@ -131,7 +132,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'name',
+      title: 'company',
       city: 'city',
       state: 'state',
       media: 'image'
