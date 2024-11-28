@@ -1,6 +1,3 @@
-import { media } from 'sanity-plugin-media'
-import { sharedNotesNotepadPlugin } from 'sanity-plugin-shared-notes'
-import { generateOGImage } from '@catherineriver/sanity-plugin-generate-ogimage'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
@@ -8,6 +5,7 @@ import {codeInput} from '@sanity/code-input'
 import {colorInput} from '@sanity/color-input'
 import {schemaTypes} from './schemaTypes'
 import {BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon} from '@sanity/icons'
+import { media } from 'sanity-plugin-media'
 
 export default defineConfig({
   name: 'default',
@@ -80,14 +78,6 @@ export default defineConfig({
 
     }),
     media(),
-    sharedNotesNotepadPlugin(),
-    generateOGImage({
-      layouts: [
-        {
-          name: 'blogPost',
-        },
-      ],
-    }),
     visionTool(),
     codeInput(),
     colorInput()
