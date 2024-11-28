@@ -185,6 +185,77 @@ export type Testimonial = {
   }
 }
 
+export type CaseStudy = {
+  _id: string
+  _type: 'caseStudy'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  postSummary?: string
+  postBody?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & YouTube)
+  >
+  featuredImage?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  createdOn?: string
+  publishedOn?: string
+  author?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'teamMember'
+  }
+  relatedModels?: Array<string>
+  metaTitle?: string
+  metaDescription?: string
+}
+
 export type BlogPost = {
   _id: string
   _type: 'blogPost'
@@ -270,6 +341,8 @@ export type BlogPost = {
     _key: string
     [internalGroqTypeReferenceTo]?: 'blogPost'
   }>
+  metaTitle?: string
+  metaDescription?: string
 }
 
 export type TeamMember = {
@@ -393,12 +466,6 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
-
 export type Color = {
   _type: 'color'
   hex?: string
@@ -440,6 +507,21 @@ export type Code = {
   highlightedLines?: Array<number>
 }
 
+export type MediaTag = {
+  _id: string
+  _type: 'media.tag'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: Slug
+}
+
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
+}
+
 export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -450,6 +532,7 @@ export type AllSanitySchemaTypes =
   | YouTube
   | Faq
   | Testimonial
+  | CaseStudy
   | BlogPost
   | TeamMember
   | BlogCategory
@@ -458,10 +541,11 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Slug
   | Color
   | RgbaColor
   | HsvaColor
   | HslaColor
   | Code
+  | MediaTag
+  | Slug
 export declare const internalGroqTypeReferenceTo: unique symbol
