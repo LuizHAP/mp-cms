@@ -58,10 +58,9 @@ export default defineType({
     defineField({
       name: 'postSummary',
       title: 'Post Summary',
-      description: 'A brief summary of the post. This will be used as the meta description and preview text. Maximum 160 characters.',
+      description: 'A brief summary of the post. This will be used as the preview text.',
       type: 'text',
       group: 'content',
-      validation: (Rule) => Rule.max(160).error('Post summary should not exceed 160 characters'),
     }),
     defineField({
       name: 'postBody',
@@ -73,12 +72,10 @@ export default defineType({
           type: 'block',
           styles: [
             { title: 'Normal', value: 'normal' },
-            { title: 'Heading 1', value: 'h1' },
-            { title: 'Heading 2', value: 'h2' },
-            { title: 'Heading 3', value: 'h3' },
-            { title: 'Heading 4', value: 'h4' },
-            { title: 'Heading 5', value: 'h5' },
-            { title: 'Heading 6', value: 'h6' },
+            { title: 'Heading 1', value: 'h2' },
+            { title: 'Heading 2', value: 'h3' },
+            { title: 'Heading 3', value: 'h4' },
+            { title: 'Heading 4', value: 'h5' },
             { title: 'Quote', value: 'blockquote' },
           ],
           marks: {
