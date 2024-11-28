@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {codeInput} from '@sanity/code-input'
 import {colorInput} from '@sanity/color-input'
 import {schemaTypes} from './schemaTypes'
-import {BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon} from '@sanity/icons'
+import {BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon} from '@sanity/icons'
 
 export default defineConfig({
   name: 'default',
@@ -40,6 +40,14 @@ export default defineConfig({
                         S.documentTypeList('blogCategory')
                       ),
                   ])
+              ),
+            // Case Studies
+            S.listItem()
+              .title('Case Studies')
+              .icon(CaseIcon)
+              .child(
+                S.documentTypeList('caseStudy')
+                  .title('Case Studies')
               ),
             // Team Members
             S.listItem()

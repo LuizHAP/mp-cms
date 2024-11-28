@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'blogPost',
-  title: 'Blog Post',
+  name: 'caseStudy',
+  title: 'Case Study',
   type: 'document',
   groups: [
     {
@@ -47,15 +47,6 @@ export default defineType({
       group: 'content',
     }),
     defineField({
-      name: 'category',
-      title: 'Category',
-      description: 'Select the category this post belongs to.',
-      type: 'reference',
-      to: [{ type: 'blogCategory' }],
-      validation: (Rule) => Rule.required(),
-      group: 'meta',
-    }),
-    defineField({
       name: 'postSummary',
       title: 'Post Summary',
       description: 'A brief summary of the post. This will be used as the meta description and preview text. Maximum 160 characters.',
@@ -66,7 +57,7 @@ export default defineType({
     defineField({
       name: 'postBody',
       title: 'Post Body',
-      description: 'The main content of the blog post. You can add text, images, videos, and custom components.',
+      description: 'The main content of the case study. You can add text, images and videos.',
       type: 'array',
       of: [
         {
@@ -110,9 +101,6 @@ export default defineType({
         {
           type: 'youTube',
         },
-        {
-          type: 'banner',
-        },
       ],
       group: 'content',
     }),
@@ -133,22 +121,6 @@ export default defineType({
         },
       ],
       group: 'media',
-    }),
-    defineField({
-      name: 'popular',
-      title: 'Popular',
-      description: 'Mark this post as popular to feature it in popular posts sections.',
-      type: 'boolean',
-      initialValue: false,
-      group: 'settings',
-    }),
-    defineField({
-      name: 'featured',
-      title: 'Featured',
-      description: 'Mark this post as featured to display it prominently on the website.',
-      type: 'boolean',
-      initialValue: false,
-      group: 'settings',
     }),
     defineField({
       name: 'createdOn',
@@ -184,22 +156,6 @@ export default defineType({
           type: 'string',
         },
       ],
-      group: 'settings',
-    }),
-    defineField({
-      name: 'relatedPosts',
-      title: 'Related Posts',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'blogPost' }],
-          options: {
-            disableNew: true, // Prevents creating new posts from this field
-          },
-        }
-      ],
-      validation: (Rule) => Rule.unique(), // Prevents duplicate references
       group: 'settings',
     }),
     defineField({
