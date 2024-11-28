@@ -20,11 +20,11 @@
     "@sanity/color-input": "^4.0.1",
     "@sanity/types": "^3.65.0",
     "@sanity/ui": "^2.8.25",
-    "@sanity/vision": "^3.65.0",
+    "@sanity/vision": "^3.65.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.16.0",
-    "sanity": "^3.65.0",
+    "sanity": "^3.65.1",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
