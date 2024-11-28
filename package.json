@@ -10,7 +10,7 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "generate-schema": "yarn global add sanity@latest && sanity schema extract && sanity typegen generate"
+    "generate-schema": "sanity schema extract && sanity typegen generate"
   },
   "keywords": [
     "sanity"

@@ -81,6 +81,110 @@ export type YouTube = {
   url?: string
 }
 
+export type Faq = {
+  _id: string
+  _type: 'faq'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  question?: string
+  answer?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      blank?: boolean
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
+
+export type Testimonial = {
+  _id: string
+  _type: 'testimonial'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  company?: string
+  state?:
+    | 'AL'
+    | 'AK'
+    | 'AZ'
+    | 'AR'
+    | 'CA'
+    | 'CO'
+    | 'CT'
+    | 'DE'
+    | 'FL'
+    | 'GA'
+    | 'HI'
+    | 'ID'
+    | 'IL'
+    | 'IN'
+    | 'IA'
+    | 'KS'
+    | 'KY'
+    | 'LA'
+    | 'ME'
+    | 'MD'
+    | 'MA'
+    | 'MI'
+    | 'MN'
+    | 'MS'
+    | 'MO'
+    | 'MT'
+    | 'NE'
+    | 'NV'
+    | 'NH'
+    | 'NJ'
+    | 'NM'
+    | 'NY'
+    | 'NC'
+    | 'ND'
+    | 'OH'
+    | 'OK'
+    | 'OR'
+    | 'PA'
+    | 'RI'
+    | 'SC'
+    | 'SD'
+    | 'TN'
+    | 'TX'
+    | 'UT'
+    | 'VT'
+    | 'VA'
+    | 'WA'
+    | 'WV'
+    | 'WI'
+    | 'WY'
+  city?: string
+  rating?: 1 | 2 | 3 | 4 | 5
+  review?: string
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+}
+
 export type BlogPost = {
   _id: string
   _type: 'blogPost'
@@ -156,7 +260,7 @@ export type BlogPost = {
     _ref: string
     _type: 'reference'
     _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'author'
+    [internalGroqTypeReferenceTo]?: 'teamMember'
   }
   relatedModels?: Array<string>
   relatedPosts?: Array<{
@@ -168,15 +272,16 @@ export type BlogPost = {
   }>
 }
 
-export type Author = {
+export type TeamMember = {
   _id: string
-  _type: 'author'
+  _type: 'teamMember'
   _createdAt: string
   _updatedAt: string
   _rev: string
   name?: string
-  slug?: Slug
+  jobTitle?: string
   bio?: string
+  linkedin?: string
   avatar?: {
     asset?: {
       _ref: string
@@ -189,13 +294,6 @@ export type Author = {
     alt?: string
     _type: 'image'
   }
-  posts?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'blogPost'
-  }>
 }
 
 export type BlogCategory = {
@@ -350,8 +448,10 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | Banner
   | YouTube
+  | Faq
+  | Testimonial
   | BlogPost
-  | Author
+  | TeamMember
   | BlogCategory
   | SanityImageCrop
   | SanityImageHotspot
