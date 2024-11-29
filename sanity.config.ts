@@ -8,7 +8,7 @@ import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, 
 import { media } from 'sanity-plugin-media'
 
 import { presentationTool } from 'sanity/presentation'
-
+import { resolve } from './lib/preview-located'
 export default defineConfig({
   name: 'default',
   title: 'Machinery Partner CMS',
@@ -16,8 +16,13 @@ export default defineConfig({
   dataset: 'production',
   plugins: [
     presentationTool({
+      resolve,
       previewUrl: {
-        origin: 'https://mp-website-git-feat-new-blog-structure-machinerypartner.vercel.app/',
+        origin: 'https://mp-website-git-feat-new-blog-structure-machinerypartner.vercel.app', //TODO: change this to the new url
+        previewMode: {
+          enable: '/api/draft-mode/enable',
+          disable: '/api/draft-mode/disable',
+        },
       }
     }),
     structureTool({
