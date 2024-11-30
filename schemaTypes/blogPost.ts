@@ -60,6 +60,7 @@ export default defineType({
       title: 'Post Summary',
       description: 'A brief summary of the post. This will be used as the preview text.',
       type: 'text',
+      rows: 4,
       group: 'content',
     }),
     defineField({

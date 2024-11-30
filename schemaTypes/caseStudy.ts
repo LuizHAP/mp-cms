@@ -104,6 +104,7 @@ export default defineType({
       title: 'Post Summary',
       description: 'A brief summary of the post. This will be used as the meta description and preview text. Maximum 160 characters.',
       type: 'text',
+      rows: 4,
       group: 'content',
       validation: (Rule) => Rule.max(160).error('Post summary should not exceed 160 characters'),
     }),
@@ -155,6 +156,12 @@ export default defineType({
         },
       ],
       group: 'content',
+    }),
+    defineField({
+      name: 'company',
+      title: 'Company',
+      type: 'string',
+      group: 'meta',
     }),
     defineField({
       name: 'state',
