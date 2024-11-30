@@ -263,7 +263,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'postSummary',
+      subtitle: 'company',
       media: 'featuredImage',
     },
   },
