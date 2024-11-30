@@ -216,15 +216,6 @@ export default defineType({
       group: 'meta',
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: [{ type: 'teamMember' }],
-      validation: (Rule) => Rule.required(),
-      description: 'Select the author of this post.',
-      group: 'meta',
-    }),
-    defineField({
       name: 'relatedModels',
       title: 'Related Models',
       type: 'array',
