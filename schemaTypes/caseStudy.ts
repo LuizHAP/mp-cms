@@ -111,7 +111,7 @@ export default defineType({
     defineField({
       name: 'postBody',
       title: 'Post Body',
-      description: 'The main content of the case study. You can add text, images and videos.',
+      description: 'The main content of the case study. You can add text, images, videos, and custom components.',
       type: 'array',
       of: [
         {
@@ -131,7 +131,46 @@ export default defineType({
               { title: 'Emphasis', value: 'em' },
               { title: 'Code', value: 'code' },
             ],
-          },
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'string',
+                    title: 'URL',
+                    validation: (Rule) => {
+                      return Rule.custom((value: string | undefined) => {
+                        if (!value) return true;
+                        if (value.includes('mailto:')) return true;
+                        if (value.includes('tel:')) return true;
+                        try {
+                          new URL(value);
+                          return true;
+                        } catch {
+                          return 'Please enter a valid URL, mailto: or tel: link';
+                        }
+                      });
+                    },
+                  },
+                  {
+                    name: 'target',
+                    type: 'string',
+                    title: 'Target',
+                    options: {
+                      list: [
+                        { title: 'Same window', value: '_self' },
+                        { title: 'New window', value: '_blank' }
+                      ]
+                    },
+                    initialValue: '_self'
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           type: 'image',
@@ -149,10 +188,53 @@ export default defineType({
               type: 'string',
               title: 'Alt text',
             },
+            {
+              name: 'link',
+              type: 'object',
+              title: 'Image Link',
+              fields: [
+                {
+                  name: 'href',
+                  type: 'string',
+                  title: 'URL',
+                  validation: (Rule) => {
+                    return Rule.custom((value: string | undefined) => {
+                      if (!value) return true;
+                      if (value.includes('mailto:')) return true;
+                      if (value.includes('tel:')) return true;
+                      try {
+                        new URL(value);
+                        return true;
+                      } catch {
+                        return 'Please enter a valid URL, mailto: or tel: link';
+                      }
+                    });
+                  },
+                },
+                {
+                  name: 'target',
+                  type: 'string',
+                  title: 'Target',
+                  options: {
+                    list: [
+                      { title: 'Same window', value: '_self' },
+                      { title: 'New window', value: '_blank' }
+                    ]
+                  },
+                  initialValue: '_self'
+                }
+              ]
+            }
           ],
         },
         {
           type: 'youTube',
+        },
+        {
+          type: 'banner',
+        },
+        {
+          type: 'callout',
         },
       ],
       group: 'content',
