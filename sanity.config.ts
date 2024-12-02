@@ -7,24 +7,24 @@ import { schemaTypes } from './schemaTypes'
 import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon } from '@sanity/icons'
 import { media } from 'sanity-plugin-media'
 
-import { presentationTool } from 'sanity/presentation'
-import { resolve } from './lib/preview-located'
+// import { presentationTool } from 'sanity/presentation'
+// import { resolve } from './lib/preview-located'
 export default defineConfig({
   name: 'default',
   title: 'Machinery Partner CMS',
   projectId: 'yhrhi1m6',
   dataset: 'production',
   plugins: [
-    presentationTool({
-      resolve,
-      previewUrl: {
-        origin: 'https://mp-website-git-feat-new-blog-structure-machinerypartner.vercel.app', //TODO: change this to the new url
-        previewMode: {
-          enable: '/api/draft-mode/enable',
-          disable: '/api/draft-mode/disable',
-        },
-      }
-    }),
+    // presentationTool({
+    //   resolve,
+    //   previewUrl: {
+    //     origin: 'https://mp-website-git-feat-new-blog-structure-machinerypartner.vercel.app', //TODO: change this to the new url
+    //     previewMode: {
+    //       enable: '/api/draft-mode/enable',
+    //       disable: '/api/draft-mode/disable',
+    //     },
+    //   }
+    // }),
     structureTool({
       structure: (S) =>
         S.list()
