@@ -96,18 +96,19 @@ export default defineType({
                     name: 'href',
                     type: 'string',
                     title: 'URL',
-                    validation: Rule =>
-                      Rule.custom((href) => {
-                        if (!href) return true
-                        if (href.startsWith('mailto:')) return true
-                        if (href.startsWith('tel:')) return true
+                    validation: (Rule) => {
+                      return Rule.custom((value: string | undefined) => {
+                        if (!value) return true;
+                        if (value.includes('mailto:')) return true;
+                        if (value.includes('tel:')) return true;
                         try {
-                          new URL(href)
-                          return true
+                          new URL(value);
+                          return true;
                         } catch {
-                          return 'Please enter a valid URL, mailto: or tel: link'
+                          return 'Please enter a valid URL, mailto: or tel: link';
                         }
-                      })
+                      });
+                    },
                   },
                   {
                     name: 'target',
@@ -151,18 +152,19 @@ export default defineType({
                   name: 'href',
                   type: 'string',
                   title: 'URL',
-                  validation: Rule =>
-                    Rule.custom((href) => {
-                      if (!href) return true
-                      if (href.startsWith('mailto:')) return true
-                      if (href.startsWith('tel:')) return true
+                  validation: (Rule) => {
+                    return Rule.custom((value: string | undefined) => {
+                      if (!value) return true;
+                      if (value.includes('mailto:')) return true;
+                      if (value.includes('tel:')) return true;
                       try {
-                        new URL(href)
-                        return true
+                        new URL(value);
+                        return true;
                       } catch {
-                        return 'Please enter a valid URL, mailto: or tel: link'
+                        return 'Please enter a valid URL, mailto: or tel: link';
                       }
-                    })
+                    });
+                  },
                 },
                 {
                   name: 'target',
@@ -185,6 +187,9 @@ export default defineType({
         },
         {
           type: 'banner',
+        },
+        {
+          type: 'callout',
         },
       ],
       group: 'content',
@@ -268,11 +273,11 @@ export default defineType({
           type: 'reference',
           to: [{ type: 'blogPost' }],
           options: {
-            disableNew: true, // Prevents creating new posts from this field
+            disableNew: true,
           },
         }
       ],
-      validation: (Rule) => Rule.unique(), // Prevents duplicate references
+      validation: (Rule) => Rule.unique(),
       group: 'settings',
     }),
     defineField({

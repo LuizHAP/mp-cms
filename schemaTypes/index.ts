@@ -6,5 +6,6 @@ import testimonial from './testimonial'
 import faq from './faq'
 import {youTubeType} from './youTubeType'
 import {bannerType} from './bannerType'
+import {calloutType} from './calloutType'
 
-export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, testimonial, faq, youTubeType, bannerType]
+export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, testimonial, faq, youTubeType, bannerType, calloutType]
