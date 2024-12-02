@@ -267,6 +267,7 @@ export default defineType({
     defineField({
       name: 'relatedPosts',
       title: 'Related Posts',
+      description: 'Optional. By default, the system automatically displays 8 posts from the same category. You can manually curate specific related posts here to override the automatic selection.',
       type: 'array',
       of: [
         {
