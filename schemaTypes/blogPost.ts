@@ -86,7 +86,33 @@ export default defineType({
               { title: 'Emphasis', value: 'em' },
               { title: 'Code', value: 'code' },
             ],
-          },
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL'
+                  },
+                  {
+                    name: 'target',
+                    type: 'string',
+                    title: 'Target',
+                    options: {
+                      list: [
+                        { title: 'Same window', value: '_self' },
+                        { title: 'New window', value: '_blank' }
+                      ]
+                    },
+                    initialValue: '_self'
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           type: 'image',
@@ -104,6 +130,30 @@ export default defineType({
               type: 'string',
               title: 'Alt text',
             },
+            {
+              name: 'link',
+              type: 'object',
+              title: 'Image Link',
+              fields: [
+                {
+                  name: 'href',
+                  type: 'url',
+                  title: 'URL'
+                },
+                {
+                  name: 'target',
+                  type: 'string',
+                  title: 'Target',
+                  options: {
+                    list: [
+                      { title: 'Same window', value: '_self' },
+                      { title: 'New window', value: '_blank' }
+                    ]
+                  },
+                  initialValue: '_self'
+                }
+              ]
+            }
           ],
         },
         {
