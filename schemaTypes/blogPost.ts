@@ -94,8 +94,20 @@ export default defineType({
                 fields: [
                   {
                     name: 'href',
-                    type: 'url',
-                    title: 'URL'
+                    type: 'string',
+                    title: 'URL',
+                    validation: Rule =>
+                      Rule.custom((href) => {
+                        if (!href) return true
+                        if (href.startsWith('mailto:')) return true
+                        if (href.startsWith('tel:')) return true
+                        try {
+                          new URL(href)
+                          return true
+                        } catch {
+                          return 'Please enter a valid URL, mailto: or tel: link'
+                        }
+                      })
                   },
                   {
                     name: 'target',
@@ -137,8 +149,20 @@ export default defineType({
               fields: [
                 {
                   name: 'href',
-                  type: 'url',
-                  title: 'URL'
+                  type: 'string',
+                  title: 'URL',
+                  validation: Rule =>
+                    Rule.custom((href) => {
+                      if (!href) return true
+                      if (href.startsWith('mailto:')) return true
+                      if (href.startsWith('tel:')) return true
+                      try {
+                        new URL(href)
+                        return true
+                      } catch {
+                        return 'Please enter a valid URL, mailto: or tel: link'
+                      }
+                    })
                 },
                 {
                   name: 'target',
