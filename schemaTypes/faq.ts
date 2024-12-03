@@ -40,18 +40,44 @@ export default defineType({
                 fields: [
                   {
                     name: 'href',
-                    type: 'url',
+                    type: 'string',
                     title: 'URL',
+                    validation: (Rule) => {
+                      return Rule.custom((value: string | undefined) => {
+                        if (!value) return true;
+
+                        // Allow relative paths starting with /
+                        if (value.startsWith('/')) return true;
+
+                        // Allow mailto: and tel: links
+                        if (value.startsWith('mailto:')) return true;
+                        if (value.startsWith('tel:')) return true;
+
+                        // Validate external URLs
+                        try {
+                          new URL(value);
+                          return true;
+                        } catch {
+                          return 'Please enter a valid URL, relative path (starting with /), mailto: or tel: link';
+                        }
+                      });
+                    },
                   },
                   {
-                    title: 'Open in new tab',
-                    name: 'blank',
-                    type: 'boolean',
-                    initialValue: true,
-                  },
-                ],
-              },
-            ],
+                    name: 'target',
+                    type: 'string',
+                    title: 'Target',
+                    options: {
+                      list: [
+                        { title: 'Same window', value: '_self' },
+                        { title: 'New window', value: '_blank' }
+                      ]
+                    },
+                    initialValue: '_self'
+                  }
+                ]
+              }
+            ]
           },
         },
       ],

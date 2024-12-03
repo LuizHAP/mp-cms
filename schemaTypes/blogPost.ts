@@ -99,13 +99,20 @@ export default defineType({
                     validation: (Rule) => {
                       return Rule.custom((value: string | undefined) => {
                         if (!value) return true;
-                        if (value.includes('mailto:')) return true;
-                        if (value.includes('tel:')) return true;
+
+                        // Allow relative paths starting with /
+                        if (value.startsWith('/')) return true;
+
+                        // Allow mailto: and tel: links
+                        if (value.startsWith('mailto:')) return true;
+                        if (value.startsWith('tel:')) return true;
+
+                        // Validate external URLs
                         try {
                           new URL(value);
                           return true;
                         } catch {
-                          return 'Please enter a valid URL, mailto: or tel: link';
+                          return 'Please enter a valid URL, relative path (starting with /), mailto: or tel: link';
                         }
                       });
                     },
