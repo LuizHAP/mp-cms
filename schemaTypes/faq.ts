@@ -83,6 +83,29 @@ export default defineType({
       ],
       validation: Rule => Rule.required().error('Answer is required'),
     }),
+    defineField({
+      name: 'publishedOn',
+      title: 'Published On',
+      type: 'datetime',
+      description: 'Date when this FAQ was published',
+      initialValue: () => new Date().toISOString(),
+    })
+  ],
+  orderings: [
+    {
+      title: 'Publication Date, New',
+      name: 'publishedOnDesc',
+      by: [
+        {field: 'publishedOn', direction: 'desc'}
+      ]
+    },
+    {
+      title: 'Publication Date, Old',
+      name: 'publishedOnAsc',
+      by: [
+        {field: 'publishedOn', direction: 'asc'}
+      ]
+    }
   ],
   preview: {
     select: {
