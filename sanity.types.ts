@@ -68,6 +68,13 @@ export type Geopoint = {
   alt?: number
 }
 
+export type Callout = {
+  _type: 'callout'
+  title?: string
+  description?: string
+  type?: 'info' | 'success' | 'warning' | 'error' | 'tip'
+}
+
 export type Banner = {
   _type: 'banner'
   title?: string
@@ -99,7 +106,7 @@ export type Faq = {
     listItem?: 'bullet' | 'number'
     markDefs?: Array<{
       href?: string
-      blank?: boolean
+      target?: '_self' | '_blank'
       _type: 'link'
       _key: string
     }>
@@ -202,10 +209,11 @@ export type CaseStudy = {
           _type: 'span'
           _key: string
         }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        style?: 'normal' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
         listItem?: 'bullet' | 'number'
         markDefs?: Array<{
           href?: string
+          target?: '_self' | '_blank'
           _type: 'link'
           _key: string
         }>
@@ -224,13 +232,76 @@ export type CaseStudy = {
         crop?: SanityImageCrop
         caption?: string
         alt?: string
+        link?: {
+          href?: string
+          target?: '_self' | '_blank'
+        }
         _type: 'image'
         _key: string
       }
     | ({
         _key: string
       } & YouTube)
+    | ({
+        _key: string
+      } & Banner)
+    | ({
+        _key: string
+      } & Callout)
   >
+  company?: string
+  state?:
+    | 'AL'
+    | 'AK'
+    | 'AZ'
+    | 'AR'
+    | 'CA'
+    | 'CO'
+    | 'CT'
+    | 'DE'
+    | 'FL'
+    | 'GA'
+    | 'HI'
+    | 'ID'
+    | 'IL'
+    | 'IN'
+    | 'IA'
+    | 'KS'
+    | 'KY'
+    | 'LA'
+    | 'ME'
+    | 'MD'
+    | 'MA'
+    | 'MI'
+    | 'MN'
+    | 'MS'
+    | 'MO'
+    | 'MT'
+    | 'NE'
+    | 'NV'
+    | 'NH'
+    | 'NJ'
+    | 'NM'
+    | 'NY'
+    | 'NC'
+    | 'ND'
+    | 'OH'
+    | 'OK'
+    | 'OR'
+    | 'PA'
+    | 'RI'
+    | 'SC'
+    | 'SD'
+    | 'TN'
+    | 'TX'
+    | 'UT'
+    | 'VT'
+    | 'VA'
+    | 'WA'
+    | 'WV'
+    | 'WI'
+    | 'WY'
+  city?: string
   featuredImage?: {
     asset?: {
       _ref: string
@@ -245,12 +316,6 @@ export type CaseStudy = {
   }
   createdOn?: string
   publishedOn?: string
-  author?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'teamMember'
-  }
   relatedModels?: Array<string>
   metaTitle?: string
   metaDescription?: string
@@ -279,10 +344,11 @@ export type BlogPost = {
           _type: 'span'
           _key: string
         }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        style?: 'normal' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
         listItem?: 'bullet' | 'number'
         markDefs?: Array<{
           href?: string
+          target?: '_self' | '_blank'
           _type: 'link'
           _key: string
         }>
@@ -301,6 +367,10 @@ export type BlogPost = {
         crop?: SanityImageCrop
         caption?: string
         alt?: string
+        link?: {
+          href?: string
+          target?: '_self' | '_blank'
+        }
         _type: 'image'
         _key: string
       }
@@ -310,6 +380,9 @@ export type BlogPost = {
     | ({
         _key: string
       } & Banner)
+    | ({
+        _key: string
+      } & Callout)
   >
   featuredImage?: {
     asset?: {
@@ -528,6 +601,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Callout
   | Banner
   | YouTube
   | Faq

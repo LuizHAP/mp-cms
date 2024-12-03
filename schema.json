@@ -326,6 +326,65 @@
     }
   },
   {
+    "name": "callout",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "callout"
+          }
+        },
+        "title": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "description": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "info"
+              },
+              {
+                "type": "string",
+                "value": "success"
+              },
+              {
+                "type": "string",
+                "value": "warning"
+              },
+              {
+                "type": "string",
+                "value": "error"
+              },
+              {
+                "type": "string",
+                "value": "tip"
+              }
+            ]
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
     "name": "banner",
     "type": "type",
     "value": {
@@ -532,10 +591,20 @@
                         },
                         "optional": true
                       },
-                      "blank": {
+                      "target": {
                         "type": "objectAttribute",
                         "value": {
-                          "type": "boolean"
+                          "type": "union",
+                          "of": [
+                            {
+                              "type": "string",
+                              "value": "_self"
+                            },
+                            {
+                              "type": "string",
+                              "value": "_blank"
+                            }
+                          ]
                         },
                         "optional": true
                       },
@@ -1091,10 +1160,6 @@
                         },
                         {
                           "type": "string",
-                          "value": "h1"
-                        },
-                        {
-                          "type": "string",
                           "value": "h2"
                         },
                         {
@@ -1149,6 +1214,23 @@
                             "type": "objectAttribute",
                             "value": {
                               "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "target": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "_self"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "_blank"
+                                }
+                              ]
                             },
                             "optional": true
                           },
@@ -1265,6 +1347,39 @@
                     },
                     "optional": true
                   },
+                  "link": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "href": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        },
+                        "target": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "string",
+                                "value": "_self"
+                              },
+                              {
+                                "type": "string",
+                                "value": "_blank"
+                              }
+                            ]
+                          },
+                          "optional": true
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
                   "_type": {
                     "type": "objectAttribute",
                     "value": {
@@ -1299,9 +1414,262 @@
                   "type": "inline",
                   "name": "youTube"
                 }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "banner"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "callout"
+                }
               }
             ]
           }
+        },
+        "optional": true
+      },
+      "company": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "state": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "AL"
+            },
+            {
+              "type": "string",
+              "value": "AK"
+            },
+            {
+              "type": "string",
+              "value": "AZ"
+            },
+            {
+              "type": "string",
+              "value": "AR"
+            },
+            {
+              "type": "string",
+              "value": "CA"
+            },
+            {
+              "type": "string",
+              "value": "CO"
+            },
+            {
+              "type": "string",
+              "value": "CT"
+            },
+            {
+              "type": "string",
+              "value": "DE"
+            },
+            {
+              "type": "string",
+              "value": "FL"
+            },
+            {
+              "type": "string",
+              "value": "GA"
+            },
+            {
+              "type": "string",
+              "value": "HI"
+            },
+            {
+              "type": "string",
+              "value": "ID"
+            },
+            {
+              "type": "string",
+              "value": "IL"
+            },
+            {
+              "type": "string",
+              "value": "IN"
+            },
+            {
+              "type": "string",
+              "value": "IA"
+            },
+            {
+              "type": "string",
+              "value": "KS"
+            },
+            {
+              "type": "string",
+              "value": "KY"
+            },
+            {
+              "type": "string",
+              "value": "LA"
+            },
+            {
+              "type": "string",
+              "value": "ME"
+            },
+            {
+              "type": "string",
+              "value": "MD"
+            },
+            {
+              "type": "string",
+              "value": "MA"
+            },
+            {
+              "type": "string",
+              "value": "MI"
+            },
+            {
+              "type": "string",
+              "value": "MN"
+            },
+            {
+              "type": "string",
+              "value": "MS"
+            },
+            {
+              "type": "string",
+              "value": "MO"
+            },
+            {
+              "type": "string",
+              "value": "MT"
+            },
+            {
+              "type": "string",
+              "value": "NE"
+            },
+            {
+              "type": "string",
+              "value": "NV"
+            },
+            {
+              "type": "string",
+              "value": "NH"
+            },
+            {
+              "type": "string",
+              "value": "NJ"
+            },
+            {
+              "type": "string",
+              "value": "NM"
+            },
+            {
+              "type": "string",
+              "value": "NY"
+            },
+            {
+              "type": "string",
+              "value": "NC"
+            },
+            {
+              "type": "string",
+              "value": "ND"
+            },
+            {
+              "type": "string",
+              "value": "OH"
+            },
+            {
+              "type": "string",
+              "value": "OK"
+            },
+            {
+              "type": "string",
+              "value": "OR"
+            },
+            {
+              "type": "string",
+              "value": "PA"
+            },
+            {
+              "type": "string",
+              "value": "RI"
+            },
+            {
+              "type": "string",
+              "value": "SC"
+            },
+            {
+              "type": "string",
+              "value": "SD"
+            },
+            {
+              "type": "string",
+              "value": "TN"
+            },
+            {
+              "type": "string",
+              "value": "TX"
+            },
+            {
+              "type": "string",
+              "value": "UT"
+            },
+            {
+              "type": "string",
+              "value": "VT"
+            },
+            {
+              "type": "string",
+              "value": "VA"
+            },
+            {
+              "type": "string",
+              "value": "WA"
+            },
+            {
+              "type": "string",
+              "value": "WV"
+            },
+            {
+              "type": "string",
+              "value": "WI"
+            },
+            {
+              "type": "string",
+              "value": "WY"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "city": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
@@ -1385,36 +1753,6 @@
         "type": "objectAttribute",
         "value": {
           "type": "string"
-        },
-        "optional": true
-      },
-      "author": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "object",
-          "attributes": {
-            "_ref": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              }
-            },
-            "_type": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string",
-                "value": "reference"
-              }
-            },
-            "_weak": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "boolean"
-              },
-              "optional": true
-            }
-          },
-          "dereferencesTo": "teamMember"
         },
         "optional": true
       },
@@ -1599,10 +1937,6 @@
                         },
                         {
                           "type": "string",
-                          "value": "h1"
-                        },
-                        {
-                          "type": "string",
                           "value": "h2"
                         },
                         {
@@ -1657,6 +1991,23 @@
                             "type": "objectAttribute",
                             "value": {
                               "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "target": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "_self"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "_blank"
+                                }
+                              ]
                             },
                             "optional": true
                           },
@@ -1773,6 +2124,39 @@
                     },
                     "optional": true
                   },
+                  "link": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "href": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        },
+                        "target": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "string",
+                                "value": "_self"
+                              },
+                              {
+                                "type": "string",
+                                "value": "_blank"
+                              }
+                            ]
+                          },
+                          "optional": true
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
                   "_type": {
                     "type": "objectAttribute",
                     "value": {
@@ -1821,6 +2205,21 @@
                 "rest": {
                   "type": "inline",
                   "name": "banner"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "callout"
                 }
               }
             ]
