@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {ImageIcon} from '@sanity/icons'
+import {ImageIcon, ThListIcon} from '@sanity/icons'
 
 const usStates = [
   { title: 'Alabama', value: 'AL' },
@@ -253,6 +253,10 @@ export default defineType({
         },
         {
           type: 'codeEmbed',
+        },
+        {
+          type: 'table',
+          icon: ThListIcon,
         },
       ],
       group: 'content',

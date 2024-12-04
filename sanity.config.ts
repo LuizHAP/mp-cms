@@ -7,6 +7,7 @@ import { schemaTypes } from './schemaTypes'
 import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon } from '@sanity/icons'
 import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
+import { table } from '@sanity/table';
 
 export default defineConfig({
   name: 'default',
@@ -85,7 +86,8 @@ export default defineConfig({
     media(),
     visionTool(),
     codeInput(),
-    colorInput()
+    colorInput(),
+    table(),
   ],
   schema: {
     types: schemaTypes,
