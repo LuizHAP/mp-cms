@@ -7,5 +7,6 @@ import faq from './faq'
 import {youTubeType} from './youTubeType'
 import {bannerType} from './bannerType'
 import {calloutType} from './calloutType'
+import codeEmbed from './codeEmbed'
 
-export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, testimonial, faq, youTubeType, bannerType, calloutType]
+export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, testimonial, faq, youTubeType, bannerType, calloutType, codeEmbed]

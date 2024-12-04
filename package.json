@@ -19,6 +19,7 @@
     "@planetary/sanity-plugin-preflight": "^1.1.1",
     "@sanity/code-input": "^4.1.4",
     "@sanity/color-input": "^4.0.1",
+    "@sanity/document-internationalization": "^3.2.0",
     "@sanity/types": "^3.65.0",
     "@sanity/ui": "^2.8.25",
     "@sanity/vision": "^3.65.1",

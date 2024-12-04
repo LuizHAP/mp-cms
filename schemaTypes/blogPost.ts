@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import {ImageIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'blogPost',
@@ -27,6 +28,12 @@ export default defineType({
     },
   ],
   fields: [
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
     defineField({
       name: 'title',
       title: 'Title',
@@ -136,6 +143,7 @@ export default defineType({
         },
         {
           type: 'image',
+          icon: ImageIcon,
           options: {
             hotspot: true,
           },
@@ -197,6 +205,9 @@ export default defineType({
         },
         {
           type: 'callout',
+        },
+        {
+          type: 'codeEmbed',
         },
       ],
       group: 'content',
