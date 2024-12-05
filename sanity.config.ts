@@ -8,6 +8,7 @@ import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, 
 import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { table } from '@sanity/table';
+import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
 export default defineConfig({
   name: 'default',
@@ -20,7 +21,7 @@ export default defineConfig({
         {id: 'en', title: 'English'},
         {id: 'es', title: 'Spanish'},
       ],
-      schemaTypes: ['blogPost', 'caseStudy', 'blogCategory', 'teamMember', 'testimonial', 'faq']
+      schemaTypes: ['blogPost', 'caseStudy', 'blogCategory', 'teamMember', 'testimonial', 'faq'],
     }),
     structureTool({
       structure: (S) =>
@@ -88,6 +89,7 @@ export default defineConfig({
     codeInput(),
     colorInput(),
     table(),
+    unsplashImageAsset(),
   ],
   schema: {
     types: schemaTypes,
