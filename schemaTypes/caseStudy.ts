@@ -113,7 +113,7 @@ export default defineType({
       type: 'text',
       rows: 4,
       group: 'content',
-      validation: (Rule) => Rule.max(160).error('Post summary should not exceed 160 characters'),
+      validation: (Rule) => Rule.max(160).warning('Post summary should not exceed 160 characters'),
     }),
     defineField({
       name: 'postBody',
