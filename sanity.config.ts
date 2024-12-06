@@ -9,7 +9,7 @@ import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { table } from '@sanity/table';
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import {googleDrive, googleDriveAssetSource} from 'sanity-plugin-google-drive'
+import { googleDrive, googleDriveAssetSource } from 'sanity-plugin-google-drive'
 
 /// <reference types="vite/client" />
 export default defineConfig({
@@ -20,8 +20,8 @@ export default defineConfig({
   plugins: [
     documentInternationalization({
       supportedLanguages: [
-        {id: 'en', title: 'English'},
-        {id: 'es', title: 'Spanish'},
+        { id: 'en', title: 'English' },
+        { id: 'es', title: 'Spanish' },
       ],
       schemaTypes: ['blogPost', 'caseStudy', 'blogCategory', 'teamMember', 'testimonial', 'faq'],
     }),
