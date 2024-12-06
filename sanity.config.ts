@@ -9,12 +9,14 @@ import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { table } from '@sanity/table';
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+import {googleDrive, googleDriveAssetSource} from 'sanity-plugin-google-drive'
 
+/// <reference types="vite/client" />
 export default defineConfig({
   name: 'default',
   title: 'Machinery Partner CMS',
-  projectId: 'yhrhi1m6',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || '',
+  dataset: process.env.SANITY_STUDIO_DATASET || '',
   plugins: [
     documentInternationalization({
       supportedLanguages: [
@@ -90,6 +92,14 @@ export default defineConfig({
     colorInput(),
     table(),
     unsplashImageAsset(),
+    googleDrive({
+      apiKey: process.env.SANITY_STUDIO_GOOGLE_DRIVE_API_KEY,
+      clientId: process.env.SANITY_STUDIO_GOOGLE_DRIVE_CLIENT_ID,
+    }),
+    googleDriveAssetSource({
+      apiKey: process.env.SANITY_STUDIO_GOOGLE_DRIVE_API_KEY,
+      clientId: process.env.SANITY_STUDIO_GOOGLE_DRIVE_CLIENT_ID,
+    })
   ],
   schema: {
     types: schemaTypes,
