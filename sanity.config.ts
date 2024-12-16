@@ -4,7 +4,7 @@ import { visionTool } from '@sanity/vision'
 import { codeInput } from '@sanity/code-input'
 import { colorInput } from '@sanity/color-input'
 import { schemaTypes } from './schemaTypes'
-import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon } from '@sanity/icons'
+import { BookIcon, DocumentsIcon, DocumentTextIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon } from '@sanity/icons'
 import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { table } from '@sanity/table';
@@ -21,7 +21,7 @@ export default defineConfig({
         {id: 'en', title: 'English'},
         {id: 'es', title: 'Spanish'},
       ],
-      schemaTypes: ['blogPost', 'caseStudy', 'blogCategory', 'teamMember', 'testimonial', 'faq'],
+      schemaTypes: ['blogPost', 'caseStudy', 'blogCategory', 'press', 'teamMember', 'testimonial', 'faq'],
     }),
     structureTool({
       structure: (S) =>
@@ -57,6 +57,14 @@ export default defineConfig({
               .child(
                 S.documentTypeList('caseStudy')
                   .title('Case Studies')
+              ),
+            // Press
+            S.listItem()
+              .title('Press')
+              .icon(DocumentTextIcon)
+              .child(
+                S.documentTypeList('press')
+                  .title('Press')
               ),
             // Team Members
             S.listItem()

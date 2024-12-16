@@ -25,5 +25,5 @@
 # Typescript
 *.tsbuildinfo
 
-# Dotenv and similar local-only files
-*.local
+# Ignore all .env files
+*.env
