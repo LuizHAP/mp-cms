@@ -142,8 +142,60 @@ export default defineType({
             defineField({
               name: 'basicallySummary',
               title: 'Basically Summary',
-              type: 'text',
               description: 'A plain-language explanation of what this section means',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [
+                    { title: 'Normal', value: 'normal' },
+                  ],
+                  marks: {
+                    decorators: [
+                      { title: 'Strong', value: 'strong' },
+                      { title: 'Emphasis', value: 'em' },
+                    ],
+                    annotations: [
+                      {
+                        name: 'link',
+                        type: 'object',
+                        title: 'Link',
+                        fields: [
+                          {
+                            name: 'href',
+                            type: 'string',
+                            title: 'URL',
+                            validation: (Rule) => {
+                              return Rule.custom((value: string | undefined) => {
+                                if (!value) return true;
+                                if (value.startsWith('/')) return true;
+                                try {
+                                  new URL(value);
+                                  return true;
+                                } catch {
+                                  return 'Please enter a valid URL or relative path';
+                                }
+                              });
+                            },
+                          },
+                          {
+                            name: 'target',
+                            type: 'string',
+                            title: 'Target',
+                            options: {
+                              list: [
+                                { title: 'Same window', value: '_self' },
+                                { title: 'New window', value: '_blank' }
+                              ]
+                            },
+                            initialValue: '_self'
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
               validation: (Rule) => Rule.required().error('Basically summary is required'),
             }),
           ],
