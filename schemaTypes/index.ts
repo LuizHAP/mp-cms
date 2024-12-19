@@ -9,5 +9,6 @@ import {youTubeType} from './youTubeType'
 import {bannerType} from './bannerType'
 import {calloutType} from './calloutType'
 import codeEmbed from './codeEmbed'
+import legalPage from './legalPage'
 
-export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, press, testimonial, faq, youTubeType, bannerType, calloutType, codeEmbed]
+export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, press, testimonial, faq, youTubeType, bannerType, calloutType, codeEmbed, legalPage]

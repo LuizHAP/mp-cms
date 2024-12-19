@@ -4,7 +4,7 @@ import { visionTool } from '@sanity/vision'
 import { codeInput } from '@sanity/code-input'
 import { colorInput } from '@sanity/color-input'
 import { schemaTypes } from './schemaTypes'
-import { BookIcon, DocumentsIcon, DocumentTextIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon } from '@sanity/icons'
+import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon,TextIcon, MasterDetailIcon } from '@sanity/icons'
 import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { table } from '@sanity/table';
@@ -61,7 +61,7 @@ export default defineConfig({
             // Press
             S.listItem()
               .title('Press')
-              .icon(DocumentTextIcon)
+              .icon(MasterDetailIcon)
               .child(
                 S.documentTypeList('press')
                   .title('Press')
@@ -89,6 +89,14 @@ export default defineConfig({
               .child(
                 S.documentTypeList('faq')
                   .title('FAQs')
+              ),
+            // Legal Pages
+            S.listItem()
+              .title('Legal Pages')
+              .icon(TextIcon)
+              .child(
+                S.documentTypeList('legalPage')
+                  .title('Legal Pages')
               ),
           ])
     }),
