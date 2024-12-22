@@ -18,6 +18,16 @@ export default defineType({
       rows: 4,
     }),
     defineField({
+      name: 'buttonLabel',
+      title: 'Button Label',
+      type: 'string',
+    }),
+    defineField({
+      name: 'buttonLink',
+      title: 'Button Link',
+      type: 'string',
+    }),
+    defineField({
       name: 'displayPage',
       title: 'Display Page',
       type: 'string',
@@ -29,16 +39,6 @@ export default defineType({
         layout: 'radio'
       },
       validation: (Rule) => Rule.required().error('Please select a page to display the slider'),
-    }),
-    defineField({
-      name: 'buttonLabel',
-      title: 'Button Label',
-      type: 'string',
-    }),
-    defineField({
-      name: 'buttonLink',
-      title: 'Button Link',
-      type: 'string',
     }),
     defineField({
       name: 'image',
