@@ -18,52 +18,69 @@ export default defineType({
       rows: 4,
     }),
     defineField({
+      name: 'displayPage',
+      title: 'Display Page',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Homepage', value: 'homepage' },
+          { title: 'Deals', value: 'deals' }
+        ],
+        layout: 'radio'
+      },
+      validation: (Rule) => Rule.required().error('Please select a page to display the slider'),
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
       options: {
         hotspot: true,
-        accept: 'image/webp'
+        accept: 'image/webp',
+        storeOriginalFilename: true,
       },
       validation: (Rule) =>
-        Rule.custom((image) => {
-          if (!image || !image.asset || !image.asset._ref) {
+        Rule.custom(async (image) => {
+          if (!image || !image.asset) {
             return true
           }
 
-          const imageAsset = image.asset as {
-            _ref: string;
-            metadata?: {
-              dimensions?: {
-                width: number;
-                height: number;
-              };
-            };
-          }
-
-          if (!imageAsset.metadata?.dimensions) {
-            return 'Image metadata is missing'
-          }
-
-          const { width, height } = imageAsset.metadata.dimensions
-
-          if (width > 1200) {
-            return 'Image width must not exceed 1200px'
-          }
-
-          const aspectRatio = width / height
-          const expectedRatio = 3
-          const tolerance = 0.01
-
-          if (Math.abs(aspectRatio - expectedRatio) > tolerance) {
-            return 'Image must have a 3:1 aspect ratio'
-          }
-
-          if (!imageAsset._ref.includes('webp')) {
+          // Check file format first since it's available in the _ref
+          if (!image.asset._ref.includes('webp')) {
             return 'Image must be in WebP format'
           }
 
-          return true
+          try {
+            // Split the asset reference
+            const parts = image.asset._ref.split('-')
+
+            // The format is: image-[hash]-[width]x[height]-[format]
+            // Find the part that contains the dimensions (contains 'x')
+            const dimensionPart = parts.find(part => part.includes('x'))
+            if (!dimensionPart) {
+              return 'Unable to determine image dimensions'
+            }
+
+            // Split the dimensions
+            const [width, height] = dimensionPart.split('x').map(Number)
+
+            if (width > 1200) {
+              return 'Image width must not exceed 1200px'
+            }
+
+            const aspectRatio = width / height
+            const expectedRatio = 3
+            const tolerance = 0.1
+
+            if (Math.abs(aspectRatio - expectedRatio) > tolerance) {
+              return `Image must have a 3:1 aspect ratio (current ratio: ${aspectRatio.toFixed(2)}:1)`
+            }
+
+            return true
+          } catch (error) {
+            console.error('Error parsing dimensions:', error)
+            return 'Error validating image dimensions'
+          }
         }),
       fields: [
         {
@@ -79,7 +96,14 @@ export default defineType({
     select: {
       title: 'title',
       subtitle: 'subtitle',
+      displayPage: 'displayPage'
     },
+    prepare({ title, subtitle, displayPage }) {
+      return {
+        title,
+        subtitle: `${displayPage.charAt(0).toUpperCase() + displayPage.slice(1)} - ${subtitle || ''}`
+      }
+    }
   },
   orderings: [
     {
