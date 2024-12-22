@@ -28,6 +28,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+    }),
+    defineField({
       name: 'displayPage',
       title: 'Display Page',
       type: 'string',
