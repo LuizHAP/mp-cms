@@ -4,7 +4,7 @@ import { visionTool } from '@sanity/vision'
 import { codeInput } from '@sanity/code-input'
 import { colorInput } from '@sanity/color-input'
 import { schemaTypes } from './schemaTypes'
-import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon,TextIcon, MasterDetailIcon } from '@sanity/icons'
+import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon,TextIcon, MasterDetailIcon, WrenchIcon, ImageIcon } from '@sanity/icons'
 import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { table } from '@sanity/table';
@@ -58,14 +58,6 @@ export default defineConfig({
                 S.documentTypeList('caseStudy')
                   .title('Case Studies')
               ),
-            // Press
-            S.listItem()
-              .title('Press')
-              .icon(MasterDetailIcon)
-              .child(
-                S.documentTypeList('press')
-                  .title('Press')
-              ),
             // Team Members
             S.listItem()
               .title('Team')
@@ -73,6 +65,14 @@ export default defineConfig({
               .child(
                 S.documentTypeList('teamMember')
                   .title('Team Members')
+              ),
+            // Sliders
+            S.listItem()
+              .title('Sliders')
+              .icon(ImageIcon)
+              .child(
+                S.documentTypeList('slider')
+                  .title('Sliders')
               ),
             // Ratings
             S.listItem()
@@ -89,6 +89,22 @@ export default defineConfig({
               .child(
                 S.documentTypeList('faq')
                   .title('FAQs')
+              ),
+            // Press
+            S.listItem()
+              .title('Press')
+              .icon(MasterDetailIcon)
+              .child(
+                S.documentTypeList('press')
+                  .title('Press')
+              ),
+            // Equipment Guides
+            S.listItem()
+              .title('Equipment Guides')
+              .icon(WrenchIcon)
+              .child(
+                S.documentTypeList('equipmentGuide')
+                  .title('Equipment Guides')
               ),
             // Legal Pages
             S.listItem()

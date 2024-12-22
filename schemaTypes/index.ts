@@ -10,5 +10,7 @@ import {bannerType} from './bannerType'
 import {calloutType} from './calloutType'
 import codeEmbed from './codeEmbed'
 import legalPage from './legalPage'
+import equipmentGuide from './equipmentGuide'
+import slider from './slider'
 
-export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, press, testimonial, faq, youTubeType, bannerType, calloutType, codeEmbed, legalPage]
+export const schemaTypes = [blogPost, blogCategory, caseStudy, teamMember, press, testimonial, faq, youTubeType, bannerType, calloutType, codeEmbed, legalPage, equipmentGuide, slider]
