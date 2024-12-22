@@ -31,6 +31,16 @@ export default defineType({
       validation: (Rule) => Rule.required().error('Please select a page to display the slider'),
     }),
     defineField({
+      name: 'buttonLabel',
+      title: 'Button Label',
+      type: 'string',
+    }),
+    defineField({
+      name: 'buttonLink',
+      title: 'Button Link',
+      type: 'string',
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
