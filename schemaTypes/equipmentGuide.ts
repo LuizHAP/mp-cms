@@ -1,5 +1,8 @@
 import { defineField, defineType } from 'sanity'
-import {ThListIcon} from '@sanity/icons'
+import { ThListIcon } from '@sanity/icons'
+import AsyncSelect from '../components/AsyncSelect';
+
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3000'
 
 export default defineType({
   name: 'equipmentGuide',
@@ -51,15 +54,7 @@ export default defineType({
     defineField({
       name: 'heroEquipment',
       title: 'Hero Equipment',
-      type: 'array',
-      of: [
-        {
-          name: 'modelSlug',
-          title: 'Model Slug',
-          type: 'string',
-        },
-      ],
-      group: 'content',
+      type: 'os-models'
     }),
     defineField({
       name: 'sections',

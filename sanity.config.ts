@@ -4,11 +4,15 @@ import { visionTool } from '@sanity/vision'
 import { codeInput } from '@sanity/code-input'
 import { colorInput } from '@sanity/color-input'
 import { schemaTypes } from './schemaTypes'
-import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon,TextIcon, MasterDetailIcon, WrenchIcon, ImageIcon } from '@sanity/icons'
+import { BookIcon, DocumentsIcon, HelpCircleIcon, StarIcon, TagIcon, UsersIcon, CaseIcon, TextIcon, MasterDetailIcon, WrenchIcon, ImageIcon } from '@sanity/icons'
 import { media } from 'sanity-plugin-media'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { table } from '@sanity/table';
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+
+import { asyncList } from '@sanity/sanity-plugin-async-list'
+
+const BACKEND_URL = 'https://mp-website-git-feat-search-models-machinerypartner.vercel.app'
 
 export default defineConfig({
   name: 'default',
@@ -18,10 +22,19 @@ export default defineConfig({
   plugins: [
     documentInternationalization({
       supportedLanguages: [
-        {id: 'en', title: 'English'},
-        {id: 'es', title: 'Spanish'},
+        { id: 'en', title: 'English' },
+        { id: 'es', title: 'Spanish' },
       ],
       schemaTypes: ['blogPost', 'caseStudy', 'blogCategory', 'press', 'teamMember', 'testimonial', 'faq'],
+    }),
+    asyncList({
+      schemaType: 'os-models',
+      loader: async ({ query }) => {
+        const url = query ? `${BACKEND_URL}/api/models?searchTerm=${query}` : `${BACKEND_URL}/api/models`
+        const response = await fetch(url)
+        const data: { model_name: string, model_slug: string }[] = await response.json()
+        return data.map((item) => ({ title: item.model_name, value: item.model_slug }))
+      }
     }),
     structureTool({
       structure: (S) =>
