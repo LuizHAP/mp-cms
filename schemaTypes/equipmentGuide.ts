@@ -2,7 +2,8 @@ import { defineField, defineType } from 'sanity'
 import { ThListIcon } from '@sanity/icons'
 import AsyncSelect from '../components/AsyncSelect';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3000'
+const BACKEND_URL = 'https://mp-website-git-feat-search-models-machinerypartner.vercel.app'
+const API_URL = `${BACKEND_URL}/api/models`
 
 export default defineType({
   name: 'equipmentGuide',
@@ -54,7 +55,20 @@ export default defineType({
     defineField({
       name: 'heroEquipment',
       title: 'Hero Equipment',
-      type: 'os-models'
+      type: 'string',
+      options: {
+        list: [],
+        url: API_URL,
+        formatResponse: (data: any) => data.map((item: any) => {
+          return {
+            label: item.model_name,
+            value: item.model_slug,
+          }
+        }),
+      } as any,
+      components: {
+        input: AsyncSelect
+      }
     }),
     defineField({
       name: 'sections',
