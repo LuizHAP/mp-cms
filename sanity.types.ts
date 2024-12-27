@@ -68,6 +68,158 @@ export type Geopoint = {
   alt?: number
 }
 
+export type Slider = {
+  _id: string
+  _type: 'slider'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  subtitle?: string
+  buttonLabel?: string
+  buttonLink?: string
+  order?: number
+  displayPage?: 'homepage' | 'deals'
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+}
+
+export type EquipmentGuide = {
+  _id: string
+  _type: 'equipmentGuide'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  heroContent?: string
+  heroEquipment?: never
+  sections?: Array<{
+    sectionTitle?: string
+    sectionContent?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'normal' | 'h4' | 'h5' | 'h6' | 'blockquote'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            target?: '_self' | '_blank'
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }
+      | ({
+          _key: string
+        } & YouTube)
+      | ({
+          _key: string
+        } & Banner)
+      | ({
+          _key: string
+        } & Callout)
+      | ({
+          _key: string
+        } & CodeEmbed)
+      | ({
+          _key: string
+        } & Table)
+    >
+    equipment?: Array<never>
+    buttonLabel?: string
+    buttonLink?: string
+    _type: 'section'
+    _key: string
+  }>
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type LegalPage = {
+  _id: string
+  _type: 'legalPage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  slug?: Slug
+  summary?: string
+  lastUpdated?: string
+  sections?: Array<{
+    sectionTitle?: string
+    legalText?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'normal' | 'h4' | 'h5'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            target?: '_self' | '_blank'
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }
+      | ({
+          _key: string
+        } & Table)
+    >
+    basicallySummary?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        target?: '_self' | '_blank'
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    _type: 'section'
+    _key: string
+  }>
+  metaTitle?: string
+  metaDescription?: string
+}
+
+export type CodeEmbed = {
+  _type: 'codeEmbed'
+  title?: string
+  code?: string
+}
+
 export type Callout = {
   _type: 'callout'
   title?: string
@@ -86,6 +238,133 @@ export type Banner = {
 export type YouTube = {
   _type: 'youTube'
   url?: string
+}
+
+export type Table = {
+  _type: 'table'
+  rows?: Array<
+    {
+      _key: string
+    } & TableRow
+  >
+}
+
+export type TableRow = {
+  _type: 'tableRow'
+  cells?: Array<string>
+}
+
+export type Color = {
+  _type: 'color'
+  hex?: string
+  alpha?: number
+  hsl?: HslaColor
+  hsv?: HsvaColor
+  rgb?: RgbaColor
+}
+
+export type RgbaColor = {
+  _type: 'rgbaColor'
+  r?: number
+  g?: number
+  b?: number
+  a?: number
+}
+
+export type HsvaColor = {
+  _type: 'hsvaColor'
+  h?: number
+  s?: number
+  v?: number
+  a?: number
+}
+
+export type HslaColor = {
+  _type: 'hslaColor'
+  h?: number
+  s?: number
+  l?: number
+  a?: number
+}
+
+export type Code = {
+  _type: 'code'
+  language?: string
+  filename?: string
+  code?: string
+  highlightedLines?: Array<number>
+}
+
+export type MediaTag = {
+  _id: string
+  _type: 'media.tag'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: Slug
+}
+
+export type OsModels = string
+
+export type TranslationMetadata = {
+  _id: string
+  _type: 'translation.metadata'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  translations?: Array<
+    {
+      _key: string
+    } & InternationalizedArrayReferenceValue
+  >
+  schemaTypes?: Array<string>
+}
+
+export type InternationalizedArrayReferenceValue = {
+  _type: 'internationalizedArrayReferenceValue'
+  value?:
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'blogPost'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'caseStudy'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'blogCategory'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'press'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'teamMember'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'testimonial'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'faq'
+      }
 }
 
 export type Faq = {
@@ -114,6 +393,7 @@ export type Faq = {
     _type: 'block'
     _key: string
   }>
+  publishedOn?: string
 }
 
 export type Testimonial = {
@@ -192,12 +472,81 @@ export type Testimonial = {
   }
 }
 
+export type Press = {
+  _id: string
+  _type: 'press'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  language?: string
+  title?: string
+  slug?: Slug
+  postSummary?: string
+  externalLink?: string
+  postBody?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          target?: '_self' | '_blank'
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: {
+          _ref: string
+          _type: 'reference'
+          _weak?: boolean
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+        }
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        caption?: string
+        alt?: string
+        link?: {
+          href?: string
+          target?: '_self' | '_blank'
+        }
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & YouTube)
+    | ({
+        _key: string
+      } & Banner)
+    | ({
+        _key: string
+      } & CodeEmbed)
+    | ({
+        _key: string
+      } & Table)
+  >
+  createdOn?: string
+  publishedOn?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+
 export type CaseStudy = {
   _id: string
   _type: 'caseStudy'
   _createdAt: string
   _updatedAt: string
   _rev: string
+  language?: string
   title?: string
   slug?: Slug
   postSummary?: string
@@ -248,6 +597,12 @@ export type CaseStudy = {
     | ({
         _key: string
       } & Callout)
+    | ({
+        _key: string
+      } & CodeEmbed)
+    | ({
+        _key: string
+      } & Table)
   >
   company?: string
   state?:
@@ -327,6 +682,7 @@ export type BlogPost = {
   _createdAt: string
   _updatedAt: string
   _rev: string
+  language?: string
   title?: string
   slug?: Slug
   category?: {
@@ -383,6 +739,12 @@ export type BlogPost = {
     | ({
         _key: string
       } & Callout)
+    | ({
+        _key: string
+      } & CodeEmbed)
+    | ({
+        _key: string
+      } & Table)
   >
   featuredImage?: {
     asset?: {
@@ -539,61 +901,17 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
-export type Color = {
-  _type: 'color'
-  hex?: string
-  alpha?: number
-  hsl?: HslaColor
-  hsv?: HsvaColor
-  rgb?: RgbaColor
-}
-
-export type RgbaColor = {
-  _type: 'rgbaColor'
-  r?: number
-  g?: number
-  b?: number
-  a?: number
-}
-
-export type HsvaColor = {
-  _type: 'hsvaColor'
-  h?: number
-  s?: number
-  v?: number
-  a?: number
-}
-
-export type HslaColor = {
-  _type: 'hslaColor'
-  h?: number
-  s?: number
-  l?: number
-  a?: number
-}
-
-export type Code = {
-  _type: 'code'
-  language?: string
-  filename?: string
-  code?: string
-  highlightedLines?: Array<number>
-}
-
-export type MediaTag = {
-  _id: string
-  _type: 'media.tag'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: Slug
-}
-
 export type Slug = {
   _type: 'slug'
   current?: string
   source?: string
 }
+
+export type InternationalizedArrayReference = Array<
+  {
+    _key: string
+  } & InternationalizedArrayReferenceValue
+>
 
 export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
@@ -601,11 +919,27 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Slider
+  | EquipmentGuide
+  | LegalPage
+  | CodeEmbed
   | Callout
   | Banner
   | YouTube
+  | Table
+  | TableRow
+  | Color
+  | RgbaColor
+  | HsvaColor
+  | HslaColor
+  | Code
+  | MediaTag
+  | OsModels
+  | TranslationMetadata
+  | InternationalizedArrayReferenceValue
   | Faq
   | Testimonial
+  | Press
   | CaseStudy
   | BlogPost
   | TeamMember
@@ -615,11 +949,6 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Color
-  | RgbaColor
-  | HsvaColor
-  | HslaColor
-  | Code
-  | MediaTag
   | Slug
+  | InternationalizedArrayReference
 export declare const internalGroqTypeReferenceTo: unique symbol
