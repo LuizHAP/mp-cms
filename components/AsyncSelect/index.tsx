@@ -1,26 +1,29 @@
 import { useState, useEffect, useCallback } from 'react'
 import { StringInputProps, set, unset } from 'sanity'
-import { Autocomplete, Card, Spinner, Text } from '@sanity/ui'
-
-const BACKEND_URL = 'https://mp-website-git-feat-search-models-machinerypartner.vercel.app'
-const API_URL = `${BACKEND_URL}/api/models`
+import { Autocomplete, Card, Flex, Spinner, Text } from '@sanity/ui'
 
 const AsyncSelect = (props: StringInputProps) => {
-  const { value, onChange } = props
+  const { value, onChange, schemaType } = props
+  const { options } = schemaType
+  const { url, formatResponse } = options as {
+    url: string
+    formatResponse: (data: any) => any
+  } || {}
+
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<any>(null)
 
   useEffect(() => {
     const getModels = async () => {
+      if (!url) return
+
       setLoading(true)
       try {
-        const response = await fetch(API_URL)
-        const data = await response.json()
-        setData(data.map((item: any) => ({
-          label: item.model_slug,
-          value: item.model_name,
-        })))
+        const response = await fetch(url)
+        const rawData = await response.json()
+        const formattedData = formatResponse ? formatResponse(rawData) : rawData
+        setData(formattedData)
       } catch (error) {
         setError(error)
       } finally {
@@ -29,7 +32,7 @@ const AsyncSelect = (props: StringInputProps) => {
     }
 
     getModels()
-  }, [])
+  }, [url, formatResponse])
 
   const handleChange = useCallback(
     (value: string) => {
@@ -57,7 +60,16 @@ const AsyncSelect = (props: StringInputProps) => {
       options={data}
       value={value}
       onChange={handleChange}
+      placeholder='Search for a model'
       id={props.id}
+      renderOption={(option: any) => (
+        <Card padding={2} style={{ cursor: 'pointer' }}>
+          <Flex gap={2} align='center'>
+            <img src={option.image || ''} alt={option.label || ''} style={{ width: 50, height: 50 }} />
+            <Text>{option.label || ''}</Text>
+          </Flex>
+        </Card>
+      )}
     />
   )
 }

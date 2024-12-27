@@ -63,6 +63,7 @@ export default defineType({
           return {
             label: item.model_name,
             value: item.model_slug,
+            image: item.model_image,
           }
         }),
       } as any,
@@ -176,6 +177,20 @@ export default defineType({
                   name: 'modelSlug',
                   title: 'Model Slug',
                   type: 'string',
+                  options: {
+                    list: [],
+                    url: API_URL,
+                    formatResponse: (data: any) => data.map((item: any) => {
+                      return {
+                        label: item.model_name,
+                        value: item.model_slug,
+                        image: item.model_image,
+                      }
+                    }),
+                  } as any,
+                  components: {
+                    input: AsyncSelect
+                  }
                 },
               ],
             }),
