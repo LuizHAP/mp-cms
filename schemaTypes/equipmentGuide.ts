@@ -1,5 +1,9 @@
 import { defineField, defineType } from 'sanity'
-import {ThListIcon} from '@sanity/icons'
+import { ThListIcon } from '@sanity/icons'
+import AsyncSelect from '../components/AsyncSelect';
+
+const BACKEND_URL = 'https://mp-website-git-feat-search-models-machinerypartner.vercel.app'
+const API_URL = `${BACKEND_URL}/api/models`
 
 export default defineType({
   name: 'equipmentGuide',
@@ -51,15 +55,21 @@ export default defineType({
     defineField({
       name: 'heroEquipment',
       title: 'Hero Equipment',
-      type: 'array',
-      of: [
-        {
-          name: 'modelSlug',
-          title: 'Model Slug',
-          type: 'string',
-        },
-      ],
-      group: 'content',
+      type: 'string',
+      options: {
+        list: [],
+        url: API_URL,
+        formatResponse: (data: any) => data.map((item: any) => {
+          return {
+            label: item.model_name,
+            value: item.model_slug,
+            image: item.model_image,
+          }
+        }),
+      } as any,
+      components: {
+        input: AsyncSelect
+      }
     }),
     defineField({
       name: 'sections',
@@ -167,6 +177,20 @@ export default defineType({
                   name: 'modelSlug',
                   title: 'Model Slug',
                   type: 'string',
+                  options: {
+                    list: [],
+                    url: API_URL,
+                    formatResponse: (data: any) => data.map((item: any) => {
+                      return {
+                        label: item.model_name,
+                        value: item.model_slug,
+                        image: item.model_image,
+                      }
+                    }),
+                  } as any,
+                  components: {
+                    input: AsyncSelect
+                  }
                 },
               ],
             }),
