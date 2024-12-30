@@ -44,8 +44,66 @@ export default defineType({
       name: 'heroContent',
       title: 'Hero Content',
       description: 'Content displayed in the hero section.',
-      type: 'text',
-      rows: 6,
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'Heading 4', value: 'h4' },
+            { title: 'Heading 5', value: 'h5' },
+            { title: 'Heading 6', value: 'h6' },
+          ],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' }
+          ],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'string',
+                    title: 'URL',
+                    validation: (Rule) => {
+                      return Rule.custom((value: string | undefined) => {
+                        if (!value) return true;
+                        if (value.startsWith('/')) return true;
+                        try {
+                          new URL(value);
+                          return true;
+                        } catch {
+                          return 'Please enter a valid URL or relative path';
+                        }
+                      });
+                    },
+                  },
+                  {
+                    name: 'target',
+                    type: 'string',
+                    title: 'Target',
+                    options: {
+                      list: [
+                        { title: 'Same window', value: '_self' },
+                        { title: 'New window', value: '_blank' }
+                      ]
+                    },
+                    initialValue: '_self'
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
       group: 'content',
     }),
     defineField({
