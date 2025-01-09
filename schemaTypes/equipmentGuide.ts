@@ -238,7 +238,7 @@ export default defineType({
                   options: {
                     list: [],
                     url: API_URL,
-                    formatResponse: (data: any) => data.map((item: any) => {
+                    formatResponse: ({ data }: { data: any }) => data.map((item: any) => {
                       return {
                         label: item.model_name,
                         value: item.model_slug,

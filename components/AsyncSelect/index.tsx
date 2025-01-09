@@ -7,7 +7,7 @@ const AsyncSelect = (props: StringInputProps) => {
   const { options } = schemaType
   const { url, formatResponse } = options as {
     url: string
-    formatResponse: (data: any) => any
+    formatResponse: ({ data }: any) => any
   } || {}
 
   const [data, setData] = useState([])
