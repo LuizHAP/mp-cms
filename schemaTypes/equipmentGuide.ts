@@ -2,8 +2,8 @@ import { defineField, defineType } from 'sanity'
 import { ThListIcon } from '@sanity/icons'
 import AsyncSelect from '../components/AsyncSelect';
 
-const BACKEND_URL = 'https://mp-website-git-feat-equipment-guides-migration-machinerypartner.vercel.app'
-const API_URL = `${BACKEND_URL}/api/models`
+const BACKEND_URL = 'https://api.machinerypartner.com'
+const API_URL = `${BACKEND_URL}/models/cms-select`
 
 export default defineType({
   name: 'equipmentGuide',
@@ -117,7 +117,7 @@ export default defineType({
       options: {
         list: [],
         url: API_URL,
-        formatResponse: (data: any) => data.map((item: any) => {
+        formatResponse: ({ data }: { data: any }) => data.map((item: any) => {
           return {
             label: item.model_name,
             value: item.model_slug,
