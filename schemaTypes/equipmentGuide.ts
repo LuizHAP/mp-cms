@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 import { ThListIcon } from '@sanity/icons'
 import AsyncSelect from '../components/AsyncSelect';
 
-const BACKEND_URL = 'https://mp-website-git-feat-search-models-machinerypartner.vercel.app'
+const BACKEND_URL = 'https://mp-website-git-feat-equipment-guides-migration-machinerypartner.vercel.app'
 const API_URL = `${BACKEND_URL}/api/models`
 
 export default defineType({
